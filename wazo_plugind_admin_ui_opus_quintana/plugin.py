@@ -48,7 +48,7 @@ class OpusConfigurationView(BaseView):
     form = OpusForm
     resource = 'opus'
 
-    @classy_menu_item('.advanced.opus', 'Opus', order=9, icon="heart")
+    @classy_menu_item('.advanced.opus', 'Opus', order=9, icon="compress")
     def index(self):
         return super(OpusConfigurationView, self).index()
 
