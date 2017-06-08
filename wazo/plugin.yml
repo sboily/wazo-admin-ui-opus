@@ -1,0 +1,9 @@
+name: opus
+namespace: quintana
+version: 0.0.1
+author: Sylvain Boily
+display_name: Opus
+tags:
+  - beta
+  - configuration
+homepage: https://github.com/sboily/wazo-admin-ui-opus
