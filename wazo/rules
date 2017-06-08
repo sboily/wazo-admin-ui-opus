@@ -13,6 +13,7 @@ case "$1" in
         ;;
 
     install)
+        chown wazo-admin-ui:wazo-admin-ui /etc/asterisk/codecs.d/opus_via_ui.conf
         systemctl restart wazo-admin-ui
         ;;
 
