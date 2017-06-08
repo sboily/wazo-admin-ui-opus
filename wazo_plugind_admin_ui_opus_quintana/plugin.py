@@ -29,5 +29,5 @@ class OpusConfigurationView(LoginRequiredView):
 
     @classy_menu_item('.advanced.opus', 'Opus', order=9, icon="heart")
     def index(self):
-        return render_template('hello_world/index.html')
+        return render_template('opus/index.html')
 
