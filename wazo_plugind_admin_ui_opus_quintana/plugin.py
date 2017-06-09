@@ -33,7 +33,7 @@ class OpusForm(BaseForm):
     name = StringField('Name', [Length(max=128),])
     packet_loss = StringField('Packet Loss', [Length(max=128),]) # 0 - 100
     complexity = StringField('Complexity', [Length(max=128),]) # 0 - 10
-    signal = SelectField('Application', choices=[('auto', 'Auto'), ('voice', 'Voice'), ('music', 'Music')])
+    signal = SelectField('Signal', choices=[('auto', 'Auto'), ('voice', 'Voice'), ('music', 'Music')])
     application = SelectField('Application', choices=[('voip', 'VOIP'), ('audio', 'Audio'), ('low_delay', 'Low Delay')])
     max_playback_rate = StringField('Max Playback Rate', [Length(max=128),]) # 8000 - 48000
     bitrate = StringField('Bite Rate', [Length(max=128),]) # 500 - 512000
