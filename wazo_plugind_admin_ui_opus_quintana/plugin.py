@@ -62,9 +62,7 @@ class OpusConfigurationView(BaseView):
 class OpusService(object):
 
     def list(self):
-        config = {'items': self._read_sections()}
-        print config
-        return config
+        return {'items': self._read_sections()}
 
     def create(self, resource):
         self._create_section(resource)
@@ -115,7 +113,7 @@ class OpusService(object):
             config.write(configfile)
 
     def _reload_asterisk(self):
-        uri = 'http://localhost:8668/services'
+        uri = 'http://localhost:8668/exec_request_handlers'
         headers = {'content-type': 'application/json'}
-        service = {'asterisk': 'reload'}
+        service = {'command': 'core reload'}
         req = requests.post(uri, data=json.dumps(service), headers=headers)
