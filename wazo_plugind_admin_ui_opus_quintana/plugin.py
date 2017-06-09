@@ -38,7 +38,7 @@ class Plugin(object):
 class OpusForm(BaseForm):
     name = StringField('Name', [InputRequired, Length(max=128)])
     packet_loss = StringField('Packet Loss', [NumberRange(min=0, max=100),])
-    complexity = StringField('Complexity', [NumberRange(min=0, max=10),]) # 0 - 10
+    complexity = StringField('Complexity', [NumberRange(min=0, max=10),])
     signal = SelectField('Signal', choices=[('', 'Select...'), ('auto', 'Auto'), ('voice', 'Voice'), ('music', 'Music')])
     application = SelectField('Application', choices=[('', 'Select...'), ('voip', 'VOIP'), ('audio', 'Audio'), ('low_delay', 'Low Delay')])
     max_playback_rate = StringField('Max Playback Rate', [NumberRange(min=800, max=48000),])
