@@ -66,12 +66,12 @@ class OpusService(object):
 
     def create(self, resource):
         self._create_section(resource)
-        self._reload_asterisk()
+        self._restart_asterisk()
         return True
 
     def delete(self, section):
         self._remove_section(section)
-        self._reload_asterisk()
+        self._restart_asterisk()
 
     def _read_sections(self):
         config = ConfigParser.RawConfigParser()
@@ -112,8 +112,13 @@ class OpusService(object):
         with open(config_file, 'wb') as configfile:
             config.write(configfile)
 
-    def _reload_asterisk(self):
-        uri = 'http://localhost:8668/exec_request_handlers'
+    def _restart_asterisk(self):
+        uri = 'http://localhost:8668/services'
         headers = {'content-type': 'application/json'}
-        service = {'ipbx': ['core reload']}
-        req = requests.post(uri, data=json.dumps(service), headers=headers)
+        services = [
+            {'asterisk': 'restart'},
+            {'xivo-ctid': 'restart'},
+        ]
+        for service in services:
+            print('Restart service {}'.format(service))
+            req = requests.post(uri, data=json.dumps(service), headers=headers)
