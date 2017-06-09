@@ -15,7 +15,7 @@ from wazo_admin_ui.helpers.plugin import create_blueprint
 from wazo_admin_ui.helpers.classful import BaseView
 from wazo_admin_ui.helpers.form import BaseForm
 
-from wtforms.fields import SubmitField, StringField, SelectField, BooleanField
+from wtforms.fields import SubmitField, StringField, SelectField
 from wtforms.validators import InputRequired, Length, NumberRange
 
 opus = create_blueprint('opus', __name__)
@@ -43,9 +43,9 @@ class OpusForm(BaseForm):
     application = SelectField('Application', choices=[('', 'Select...'), ('voip', 'VOIP'), ('audio', 'Audio'), ('low_delay', 'Low Delay')])
     max_playback_rate = StringField('Max Playback Rate', [NumberRange(min=800, max=48000),])
     bitrate = StringField('Bite Rate', [NumberRange(min=500, max=512000),])
-    cbr = BooleanField('CBR')
-    fec = BooleanField('FEC')
-    dtx = BooleanField('DTX')
+    cbr = SelectField('CBR', choices=[('', 'Select...'), ('no', 'No'), ('yes', 'Yes')])
+    fec = SelectField('FEC', choices=[('', 'Select...'), ('no', 'No'), ('yes', 'Yes')])
+    dtx = SelectField('DTX', choices=[('', 'Select...'), ('no', 'No'), ('yes', 'Yes')])
     submit = SubmitField('Submit')
 
 
