@@ -58,5 +58,6 @@ class OpusService(object):
     def list(self):
         return {'items': []}
 
-    def create(self):
+    def create(self, resource):
+        print(resource)
         return True
