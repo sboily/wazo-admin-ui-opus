@@ -12,7 +12,7 @@ from wazo_admin_ui.helpers.classful import BaseView
 from wazo_admin_ui.helpers.form import BaseForm
 
 from wtforms.fields import SubmitField, StringField, SelectField, BooleanField
-from wtforms.validators import InputRequired, Length
+from wtforms.validators import InputRequired, Length, NumberRange
 
 opus = create_blueprint('opus', __name__)
 
@@ -30,13 +30,13 @@ class Plugin(object):
 
 
 class OpusForm(BaseForm):
-    name = StringField('Name', [Length(max=128),])
-    packet_loss = StringField('Packet Loss', [Length(max=128),]) # 0 - 100
-    complexity = StringField('Complexity', [Length(max=128),]) # 0 - 10
+    name = StringField('Name', [InputRequired, Length(max=128)])
+    packet_loss = StringField('Packet Loss', [NumberRange(min=0, max=100),])
+    complexity = StringField('Complexity', [NumberRange(min=0, max=10),]) # 0 - 10
     signal = SelectField('Signal', choices=[('auto', 'Auto'), ('voice', 'Voice'), ('music', 'Music')])
     application = SelectField('Application', choices=[('voip', 'VOIP'), ('audio', 'Audio'), ('low_delay', 'Low Delay')])
-    max_playback_rate = StringField('Max Playback Rate', [Length(max=128),]) # 8000 - 48000
-    bitrate = StringField('Bite Rate', [Length(max=128),]) # 500 - 512000
+    max_playback_rate = StringField('Max Playback Rate', [NumberRange(min=800, max=48000),])
+    bitrate = StringField('Bite Rate', [NumberRange(min=500, max=512000),])
     cbr = BooleanField('CBR')
     fec = BooleanField('FEC')
     dtx = BooleanField('DTX')
