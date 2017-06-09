@@ -60,12 +60,17 @@ class OpusConfigurationView(BaseView):
 class OpusService(object):
 
     def list(self):
+        self._read_sections()
         return {'items': []}
 
     def create(self, resource):
         print(resource)
         self._create_section(resource)
         return True
+
+    def _read_sections(self):
+        config = ConfigParser.RawConfigParser()
+        print(config.read(config_file))
 
     def _create_section(self, resource):
         config = ConfigParser.RawConfigParser()
