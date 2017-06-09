@@ -1,4 +1,4 @@
-Opus plugin ito help for configuring Asterisk Opus codec in wazo-admin-ui.
+Opus plugin to help for configuring Asterisk Opus codec in wazo-admin-ui.
 
 If you want more informations about the configuration check the Asterisk wiki documentation.
 
