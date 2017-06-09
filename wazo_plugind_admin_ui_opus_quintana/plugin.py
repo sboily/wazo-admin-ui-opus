@@ -4,6 +4,7 @@
 
 
 import ConfigParser
+import requests 
 
 from flask import render_template
 from flask_menu.classy import register_flaskview
@@ -60,19 +61,18 @@ class OpusConfigurationView(BaseView):
 class OpusService(object):
 
     def list(self):
-        self._read_sections()
-        return {'items': []}
+        return {'items': self._read_sections()}
 
     def create(self, resource):
         print(resource)
         self._create_section(resource)
+        self._reload_asterisk()
         return True
 
     def _read_sections(self):
         config = ConfigParser.RawConfigParser()
         config.read(config_file)
-        my_config_parser_dict = {s:dict(config.items(s)) for s in config.sections()}
-        print my_config_parser_dict
+        return {['name': s, dict(config.items(s))] for s in config.sections()}
 
     def _create_section(self, resource):
         config = ConfigParser.RawConfigParser()
@@ -91,3 +91,9 @@ class OpusService(object):
 
         with open(config_file, 'a+') as configfile:
             config.write(configfile)
+
+    def _reload_asterisk(self):
+        uri = 'http://localhost:8668/services'
+        headers = {'content-type': 'application/json'}
+        service = {'asterisk': 'reload'}
+        req = requests.post(uri, data=json.dumps(service), headers=headers)
