@@ -11,11 +11,13 @@
         {% call build_list_table_headers() %}
           <th>Name</th>
           <th>Type</th>
+          <th>Bandwidth</th>
           {{ add_list_table_header_action() }}
         {% endcall %}
         {% call(opus) build_list_table_rows(resource_list['items']) %}
           <td>{{ opus.name }}</td>
           <td>Opus</td>
+          <td>{{ opus.max_bandwidth or 'full' }}</td>
           <td>
             {{ add_delete_button(href=url_for('.OpusConfigurationView:delete', id=opus.name)) }}
           </td>
