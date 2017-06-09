@@ -120,5 +120,4 @@ class OpusService(object):
             {'xivo-ctid': 'restart'},
         ]
         for service in services:
-            print('Restart service {}'.format(service))
             req = requests.post(uri, data=json.dumps(service), headers=headers)
