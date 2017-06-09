@@ -117,3 +117,5 @@ class OpusService(object):
         headers = {'content-type': 'application/json'}
         service = {'ipbx': 'core reload'}
         req = requests.post(uri, data=json.dumps(service), headers=headers)
+        print(dir(req))
+        print(req)
