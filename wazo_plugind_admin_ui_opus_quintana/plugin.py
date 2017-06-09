@@ -72,6 +72,9 @@ class OpusService(object):
         self._reload_asterisk()
         return True
 
+    def delete(self, section):
+        self._remove_section(section)
+
     def _read_sections(self):
         config = ConfigParser.RawConfigParser()
         config.read(config_file)
@@ -93,6 +96,14 @@ class OpusService(object):
         config.set(section, 'dtx', resource.get('dtx'))
 
         with open(config_file, 'a+') as configfile:
+            config.write(configfile)
+
+    def _remove_section(self, section):
+        config = ConfigParser.RawConfigParser()
+        config.read(config_file)
+        config.remove_section(section)
+
+        with open(config_file, 'wb') as configfile:
             config.write(configfile)
 
     def _reload_asterisk(self):
