@@ -89,5 +89,5 @@ class OpusService(object):
         config.set(section, 'fec', resource.get('fec'))
         config.set(section, 'dtx', resource.get('dtx'))
 
-        with open(config_file, 'wb') as configfile:
+        with open(config_file, 'a+') as configfile:
             config.write(configfile)
