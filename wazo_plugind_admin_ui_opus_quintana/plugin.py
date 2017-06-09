@@ -15,7 +15,7 @@ from wazo_admin_ui.helpers.plugin import create_blueprint
 from wazo_admin_ui.helpers.classful import BaseView
 from wazo_admin_ui.helpers.form import BaseForm
 
-from wtforms.fields import SubmitField, StringField, SelectField, NumberField
+from wtforms.fields import SubmitField, StringField, SelectField, IntegerField
 from wtforms.validators import InputRequired, Length, NumberRange
 
 opus = create_blueprint('opus', __name__)
@@ -37,13 +37,13 @@ class Plugin(object):
 
 class OpusForm(BaseForm):
     name = StringField('Name', [InputRequired, Length(max=128)])
-    packet_loss = NumberField('Packet Loss', [NumberRange(min=0, max=100),])
-    complexity = NumberField('Complexity', [NumberRange(min=0, max=10),])
+    packet_loss = IntegerField('Packet Loss', [NumberRange(min=0, max=100),])
+    complexity = IntegerField('Complexity', [NumberRange(min=0, max=10),])
     signal = SelectField('Signal', choices=[('', 'Select...'), ('auto', 'Auto'), ('voice', 'Voice'), ('music', 'Music')])
     application = SelectField('Application', choices=[('', 'Select...'), ('voip', 'VOIP'), ('audio', 'Audio'), ('low_delay', 'Low Delay')])
-    max_playback_rate = NumberField('Max Playback Rate', [NumberRange(min=800, max=48000),])
+    max_playback_rate = IntegerField('Max Playback Rate', [NumberRange(min=800, max=48000),])
     max_bandwidth = SelectField('Max Bandwidth', choices=[('', 'Select...'), ('narrow','Narrow'), ('medium', 'Medium'), ('wide', 'Wide'), ('super_wide', 'Super Wide'), ('full', 'Full')])
-    bitrate = NumberField('Bite Rate', [NumberRange(min=500, max=512000),])
+    bitrate = IntegerField('Bite Rate', [NumberRange(min=500, max=512000),])
     cbr = SelectField('CBR', choices=[('', 'Select...'), ('no', 'No'), ('yes', 'Yes')])
     fec = SelectField('FEC', choices=[('', 'Select...'), ('no', 'No'), ('yes', 'Yes')])
     dtx = SelectField('DTX', choices=[('', 'Select...'), ('no', 'No'), ('yes', 'Yes')])
