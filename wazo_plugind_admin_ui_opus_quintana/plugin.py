@@ -42,7 +42,7 @@ class OpusForm(BaseForm):
     signal = SelectField('Signal', choices=[('', 'Select...'), ('auto', 'Auto'), ('voice', 'Voice'), ('music', 'Music')])
     application = SelectField('Application', choices=[('', 'Select...'), ('voip', 'VOIP'), ('audio', 'Audio'), ('low_delay', 'Low Delay')])
     max_playback_rate = StringField('Max Playback Rate', [NumberRange(min=800, max=48000),])
-    max_bandwidth = SelectField('Max Bandwidth', choices=[('narrow','Narrow'), ('medium', 'Medium'), ('wide', 'Wide'), ('super_wide', 'Super Wide'), ('full', 'Full')])
+    max_bandwidth = SelectField('Max Bandwidth', choices=[('', 'Select...'), ('narrow','Narrow'), ('medium', 'Medium'), ('wide', 'Wide'), ('super_wide', 'Super Wide'), ('full', 'Full')])
     bitrate = StringField('Bite Rate', [NumberRange(min=500, max=512000),])
     cbr = SelectField('CBR', choices=[('', 'Select...'), ('no', 'No'), ('yes', 'Yes')])
     fec = SelectField('FEC', choices=[('', 'Select...'), ('no', 'No'), ('yes', 'Yes')])
