@@ -74,6 +74,7 @@ class OpusService(object):
 
     def delete(self, section):
         self._remove_section(section)
+        self._reload_asterisk()
 
     def _read_sections(self):
         config = ConfigParser.RawConfigParser()
