@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: GPL-3.0+
 
 
+import ConfigParser
+
 from flask import render_template
 from flask_menu.classy import register_flaskview
 from flask_menu.classy import classy_menu_item
@@ -15,6 +17,8 @@ from wtforms.fields import SubmitField, StringField, SelectField, BooleanField
 from wtforms.validators import InputRequired, Length, NumberRange
 
 opus = create_blueprint('opus', __name__)
+
+config_file = '/etc/asterisk/codecs.d/opus_via_ui.conf'
 
 
 class Plugin(object):
@@ -60,4 +64,14 @@ class OpusService(object):
 
     def create(self, resource):
         print(resource)
+        self._create_section(resource)
         return True
+
+    def _create_section(self, resource):
+        config = ConfigParser.RawConfigParser()
+        section = resource['name']
+        config.add_section(section)
+        config.set(section, 'type', 'opus')
+
+        with open(config_file, 'wb') as configfile:
+            config.write(configfile)
