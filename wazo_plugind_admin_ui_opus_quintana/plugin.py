@@ -61,7 +61,9 @@ class OpusConfigurationView(BaseView):
 class OpusService(object):
 
     def list(self):
-        return {'items': self._read_sections()}
+        config = {'items': self._read_sections()}
+        print config
+        return config
 
     def create(self, resource):
         print(resource)
