@@ -79,6 +79,15 @@ class OpusService(object):
         section = resource['name']
         config.add_section(section)
         config.set(section, 'type', 'opus')
+        config.set(section, 'packet_loss', resource.get('packet_lost'))
+        config.set(section, 'complexity', resource.get('complexity'))
+        config.set(section, 'signal', resource.get('signal'))
+        config.set(section, 'application', resource.get('application'))
+        config.set(section, 'max_playback_rate', resource.get('max_playback_rate'))
+        config.set(section, 'bitrate', resource.get('bitrate'))
+        config.set(section, 'cbr', resource.get('cbr'))
+        config.set(section, 'fec', resource.get('fec'))
+        config.set(section, 'dtx', resource.get('dtx'))
 
         with open(config_file, 'wb') as configfile:
             config.write(configfile)
