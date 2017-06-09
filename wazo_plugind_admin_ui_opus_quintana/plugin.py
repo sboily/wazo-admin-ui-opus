@@ -115,5 +115,5 @@ class OpusService(object):
     def _reload_asterisk(self):
         uri = 'http://localhost:8668/exec_request_handlers'
         headers = {'content-type': 'application/json'}
-        service = {'command': 'core reload'}
+        service = {'ipbx': 'core reload'}
         req = requests.post(uri, data=json.dumps(service), headers=headers)
