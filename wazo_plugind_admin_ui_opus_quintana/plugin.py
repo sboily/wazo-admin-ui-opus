@@ -70,7 +70,9 @@ class OpusService(object):
 
     def _read_sections(self):
         config = ConfigParser.RawConfigParser()
-        print(config.read(config_file))
+        config.read(config_file)
+        my_config_parser_dict = {s:dict(config.items(s)) for s in config.sections()}
+        print my_config_parser_dict
 
     def _create_section(self, resource):
         config = ConfigParser.RawConfigParser()
