@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0+
 
 
-import ConfigParser
+import configparser
 import requests 
 import json
 
@@ -76,12 +76,12 @@ class OpusService(object):
         self._restart_asterisk()
 
     def _read_sections(self):
-        config = ConfigParser.RawConfigParser()
+        config = configparser.ConfigParser.RawConfigParser()
         config.read(config_file)
         return [dict(config.items(s), name=s) for s in config.sections()]
 
     def _create_section(self, resource):
-        config = ConfigParser.RawConfigParser()
+        config = configparser.ConfigParser.RawConfigParser()
         section = resource['name']
         config.add_section(section)
         config.set(section, 'type', 'opus')
@@ -108,7 +108,7 @@ class OpusService(object):
             config.set(section, name, resource.get(name))
 
     def _remove_section(self, section):
-        config = ConfigParser.RawConfigParser()
+        config = configparser.ConfigParser.RawConfigParser()
         config.read(config_file)
         config.remove_section(section)
 
