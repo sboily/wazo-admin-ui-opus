@@ -8,18 +8,18 @@ case "$1" in
         ;;
 
     package)
-        tar xvf dist/wazo_admin_ui_opus-*.tar.gz -C ${pkgdir}
+        tar xvf dist/wazo_ui_opus-*.tar.gz -C ${pkgdir}
         cp -R etc ${pkgdir}/
         ;;
 
     install)
-        chown wazo-admin-ui:wazo-admin-ui /etc/asterisk/codecs.d/opus_via_ui.conf
-        systemctl restart wazo-admin-ui
+        chown wazo-ui:wazo-ui /etc/asterisk/codecs.d/opus_via_ui.conf
+        systemctl restart wazo-ui
         ;;
 
     uninstall)
-        rm -f /etc/wazo-admin-ui/conf.d/50-wazo-plugin-opus.yml
-        systemctl restart wazo-admin-ui
+        rm -f /etc/wazo-ui/conf.d/50-wazo-plugin-opus.yml
+        systemctl restart wazo-ui
         ;;
 
     *)

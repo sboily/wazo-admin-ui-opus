@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 The Wazo Authors  (see the AUTHORS file)
+# Copyright 2017-2020 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0+
 
 
@@ -11,9 +11,9 @@ from flask import render_template
 from flask_menu.classy import register_flaskview
 from flask_menu.classy import classy_menu_item
 
-from wazo_admin_ui.helpers.plugin import create_blueprint
-from wazo_admin_ui.helpers.classful import BaseView
-from wazo_admin_ui.helpers.form import BaseForm
+from ..helpers.plugin import create_blueprint
+from ..helpers.classful import BaseView
+from ..helpers.form import BaseForm
 
 from wtforms.fields import SubmitField, StringField, SelectField
 from wtforms.fields.html5 import IntegerField
@@ -119,8 +119,7 @@ class OpusService(object):
         uri = 'http://localhost:8668/services'
         headers = {'content-type': 'application/json'}
         services = [
-            {'asterisk': 'restart'},
-            {'xivo-ctid': 'restart'},
+            {'asterisk': 'restart'}
         ]
         for service in services:
             req = requests.post(uri, data=json.dumps(service), headers=headers)
