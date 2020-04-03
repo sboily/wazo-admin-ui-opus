@@ -22,7 +22,7 @@ setup(
     zip_safe=False,
 
     package_data={
-        'wazo_ui_opus_quintana': ['templates/*/*.html'],
+        'wazo_ui_opus_quintana': ['templates/*/*/*.html'],
     },
 
     entry_points={
