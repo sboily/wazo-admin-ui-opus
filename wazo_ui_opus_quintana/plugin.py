@@ -53,13 +53,12 @@ class OpusForm(BaseForm):
 
 
 class OpusConfigurationView(BaseView):
-
     form = OpusForm
     resource = 'opus'
 
     @menu_item('.ipbx.advanced.opus', l_('Opus'), icon="compress")
     def index(self):
-        return super(OpusConfigurationView, self).index()
+        return super().index()
 
 
 class OpusService(object):
