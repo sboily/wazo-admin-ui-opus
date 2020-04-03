@@ -8,7 +8,7 @@
   <section class="content">
     {% call build_list_containers('Opus', 'compress') %}
       {% call build_list_table() %}
-        {% call build_list_table_headers() %}
+	{% call build_list_table_headers(delete=url_for('.OpusConfigurationView:delete', id=opus.name)) %}
           <th>Name</th>
           <th>Type</th>
           <th>Bandwidth</th>
@@ -18,9 +18,6 @@
           <td>{{ opus.name }}</td>
           <td>Opus</td>
           <td>{{ opus.max_bandwidth or 'full' }}</td>
-          <td>
-            {{ add_delete_button(href=url_for('.OpusConfigurationView:delete', id=opus.name)) }}
-          </td>
         {% endcall %}
       {% endcall %}
     {% endcall %}
