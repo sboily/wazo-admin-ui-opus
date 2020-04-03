@@ -1,18 +1,19 @@
 {% extends "layout.html" %}
 
 {% block content_header %}
-  {{ build_breadcrumb('Opus', 'configuration of opus plugin', 'compress', ['list']) }}
+  {{ build_breadcrumbs([
+    { 'name': _('Opus'), 'link': url_for('.OpusConfigurationView:index'), 'icon': 'compress' }
+  ]) }}
 {% endblock %}
 
 {% block content %}
   <section class="content">
     {% call build_list_containers('Opus', 'compress') %}
       {% call build_list_table() %}
-	{% call build_list_table_headers(delete=url_for('.OpusConfigurationView:delete', id=opus.name)) %}
+        {% call build_list_table_headers(delete=url_for('.OpusConfigurationView:delete', id='')) %}
           <th>Name</th>
           <th>Type</th>
           <th>Bandwidth</th>
-          {{ add_list_table_header_action() }}
         {% endcall %}
         {% call(opus) build_list_table_rows(resource_list['items']) %}
           <td>{{ opus.name }}</td>
