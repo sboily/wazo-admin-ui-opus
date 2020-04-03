@@ -21,6 +21,10 @@ setup(
     include_package_data=True,
     zip_safe=False,
 
+    package_data={
+        'wazo_ui_opus_quintana': ['templates/*/*.html'],
+    },
+
     entry_points={
         'wazo_ui.plugins': [
             'opus = wazo_ui_opus_quintana.plugin:Plugin',

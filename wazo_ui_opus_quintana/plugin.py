@@ -10,6 +10,7 @@ import json
 from flask import render_template
 from flask_menu.classy import register_flaskview
 from flask_menu.classy import classy_menu_item
+from flask_babel import lazy_gettext as l_
 
 from wazo_ui.helpers.plugin import create_blueprint
 from wazo_ui.helpers.classful import BaseView
@@ -56,7 +57,7 @@ class OpusConfigurationView(BaseView):
     form = OpusForm
     resource = 'opus'
 
-    @classy_menu_item('.advanced.opus', 'Opus', order=9, icon="compress")
+    @classy_menu_item('.ipbx.advanced.opus', l_('Opus'), icon="compress")
     def index(self):
         return super(OpusConfigurationView, self).index()
 
