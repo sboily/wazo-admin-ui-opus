@@ -11,9 +11,9 @@ from flask import render_template
 from flask_menu.classy import register_flaskview
 from flask_menu.classy import classy_menu_item
 
-from ..helpers.plugin import create_blueprint
-from ..helpers.classful import BaseView
-from ..helpers.form import BaseForm
+from wazo_ui.helpers.plugin import create_blueprint
+from wazo_ui.helpers.classful import BaseView
+from wazo_ui.helpers.form import BaseForm
 
 from wtforms.fields import SubmitField, StringField, SelectField
 from wtforms.fields.html5 import IntegerField
