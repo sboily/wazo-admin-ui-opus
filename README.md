@@ -5,3 +5,8 @@ If you want more informations about the configuration check the Asterisk wiki do
     https://wiki.asterisk.org/wiki/display/AST/Codec+Opus
 
 Warning: When you add a configuration Asterisk is restarted!
+
+Installation
+------------
+
+    wazo-plugind-cli -c "install git https://github.com/sboily/wazo-ui-opus"
