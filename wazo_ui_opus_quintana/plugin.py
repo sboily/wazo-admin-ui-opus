@@ -12,9 +12,9 @@ from flask_menu.classy import register_flaskview
 from flask_babel import lazy_gettext as l_
 
 from wazo_ui.helpers.plugin import create_blueprint
-from wazo_ui.helpers.classful import BaseView
 from wazo_ui.helpers.form import BaseForm
 from wazo_ui.helpers.menu import menu_item
+from wazo_ui.helpers.view import BaseIPBXHelperView
 
 from wtforms.fields import SubmitField, StringField, SelectField
 from wtforms.fields.html5 import IntegerField
@@ -52,7 +52,7 @@ class OpusForm(BaseForm):
     submit = SubmitField('Submit')
 
 
-class OpusConfigurationView(BaseView):
+class OpusConfigurationView(BaseIPBXHelperView):
     form = OpusForm
     resource = 'opus'
 
