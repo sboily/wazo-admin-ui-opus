@@ -5,7 +5,7 @@ If you want more informations about the configuration check the Asterisk documen
     https://wiki.asterisk.org/wiki/display/AST/Codec+Opus
     https://blogs.asterisk.org/2017/01/18/configuring-opus-encoder-asterisk/
 
-Warning: When you modify a codec configuration, Asterisk is restarted!
+Warning: When you modify a codec configuration, Asterisk is reloaded!
 
 Installation
 ------------
