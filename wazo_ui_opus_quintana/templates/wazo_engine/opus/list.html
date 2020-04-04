@@ -10,7 +10,7 @@
   <section class="content">
     {% call build_list_containers('Opus', 'compress') %}
       {% call build_list_table() %}
-        {% call build_list_table_headers(delete=url_for('.OpusConfigurationView:delete', id='')) %}
+        {% call build_list_table_headers(get=url_for('.OpusConfigurationView:get', id=''), delete=url_for('.OpusConfigurationView:delete', id='')) %}
           <th>Name</th>
           <th>Type</th>
           <th>Bandwidth</th>

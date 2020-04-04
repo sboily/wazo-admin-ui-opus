@@ -75,6 +75,12 @@ class OpusService(object):
         self._remove_section(section)
         self._restart_asterisk()
 
+    def get(self, section):
+        return self._get_section(section)
+
+    def update(self, resource):
+        self._update_section(resource)
+
     def _read_sections(self):
         config = configparser.ConfigParser()
         config.read(config_file)
@@ -85,6 +91,7 @@ class OpusService(object):
         section = resource['name']
         config.add_section(section)
         config.set(section, 'type', 'opus')
+        config.set(section, 'name', section)
         options = [
             'packet_loss',
             'complexity',
@@ -105,21 +112,39 @@ class OpusService(object):
 
     def _add_option(self, config, section, name, resource):
         if resource.get(name):
-            config.set(section, name, resource.get(name))
+            config.set(section, name, str(resource.get(name)))
 
     def _remove_section(self, section):
         config = configparser.ConfigParser()
         config.read(config_file)
         config.remove_section(section)
 
-        with open(config_file, 'wb') as configfile:
+        with open(config_file, 'w+') as configfile:
+            config.write(configfile)
+
+    def _get_section(self, section):
+        config = configparser.ConfigParser()
+        config.read(config_file)
+        return config[section]
+
+    def _update_section(self, resource):
+        config = configparser.ConfigParser()
+        config.read(config_file)
+        section = resource['name']
+        config.set(section, 'type', 'opus')
+        for option in resource:
+            if option is not 'uuid':
+                if resource[option] is not None:
+                    config[section][option] = str(resource[option])
+
+        with open(config_file, 'w+') as configfile:
             config.write(configfile)
 
     def _restart_asterisk(self):
         uri = 'http://localhost:8668/services'
         headers = {'content-type': 'application/json'}
         services = [
-            {'asterisk': 'restart'}
+            {'asterisk': 'reload'}
         ]
         for service in services:
             req = requests.post(uri, data=json.dumps(service), headers=headers)
