@@ -68,18 +68,19 @@ class OpusService(object):
 
     def create(self, resource):
         self._create_section(resource)
-        self._restart_asterisk()
+        self._reload_asterisk()
         return True
 
     def delete(self, section):
         self._remove_section(section)
-        self._restart_asterisk()
+        self._reload_asterisk()
 
     def get(self, section):
         return self._get_section(section)
 
     def update(self, resource):
         self._update_section(resource)
+        self._reload_asterisk()
 
     def _read_sections(self):
         config = configparser.ConfigParser()
@@ -140,7 +141,7 @@ class OpusService(object):
         with open(config_file, 'w+') as configfile:
             config.write(configfile)
 
-    def _restart_asterisk(self):
+    def _reload_asterisk(self):
         uri = 'http://localhost:8668/services'
         headers = {'content-type': 'application/json'}
         services = [
