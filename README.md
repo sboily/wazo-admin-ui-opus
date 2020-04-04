@@ -11,3 +11,8 @@ Installation
 ------------
 
     wazo-plugind-cli -c "install git https://github.com/sboily/wazo-ui-opus"
+
+Screenshot
+-----------
+
+![screenshot](./screenshots/01.png?raw=true)
